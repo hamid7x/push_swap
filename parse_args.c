@@ -13,7 +13,11 @@ int is_invalid_number(char *s)
 	 while(s[i] == ' ')
 		 i++;
 	 if(s[i] == '-' || s[i] == '+')
-		 i++;
+	 {
+	 	if(!(s[i+1] >= '0' && s[i + 1] <= '9'))
+			return 1;
+		i++;
+	 }
 	 while(s[i])
 	{
 		if(!(s[i] >= '0' && s[i] <= '9'))
@@ -22,22 +26,42 @@ int is_invalid_number(char *s)
 	}	
 	return 0;
 }
-void	add_stack_back(t_node *a, int value)
+void	add_stack_back(t_node **a, int value)
 {
 	 t_node *new;
-	 
+
 	 new = malloc(sizeof(t_node));
 	 new->value = value;
 	 new->next = NULL;
-	 if(a == NULL)
-		a = new;
-	else
+	 t_node *curr = *a;
+	 if(*a == NULL)
+		*a = new;
+	 else
+         {
+	 	while(curr->next)
+			curr = curr->next;
+		curr->next = new;
+	 }
+}
+int has_duplicate(t_node *a, int n)
+{
+	t_node *ptr;
+
+	ptr = a;
+	while(ptr)
 	{
-		while(a->next)
-			a = a->next;
-		a->next = new;
+		if(ptr->value == n)
+			return 1;
+		ptr = ptr->next;
 	}
-	printf("%d\n", a->value);
+	return 0;
+}
+void	free_split(char **arr, int j)
+{
+	int i = 0;
+	while(i < j)
+		free(arr[i++]);
+	free(arr);
 }
 t_node *parse_args(int ac, char **av)
 {
@@ -64,9 +88,12 @@ t_node *parse_args(int ac, char **av)
 			n = ft_atoi(numbers[j]);
 			if(n < INT_MIN || n > INT_MAX)
 				error_exit();
-			add_stack_back(a, n);
+			if(has_duplicate(a, n))
+				error_exit();
+			add_stack_back(&a, n);
 			j++;		
-		}	
+		}
+		free_split(numbers, j);	
 		i++;
 	}
 	return a;
