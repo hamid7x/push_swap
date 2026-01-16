@@ -10,5 +10,7 @@ typedef struct s_node
 } t_node;
 
 t_node *parse_args(int ac, char **av);
-char	**ft_split(const char *s, char c);
-long long		ft_atoi(const char *s);
+char		**ft_split(const char *s, char c);
+long long	ft_atoi(const char *s);
+void		free_split(char **arr);
+void		free_stack(t_node *a);

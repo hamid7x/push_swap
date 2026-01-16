@@ -2,11 +2,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	error_exit()
+void	error_exit(t_node *a, char **numbers)
 {
+	free_split(numbers);
+	free_stack(a);
 	write(2, "Error\n", 6);
 	exit(0);
 }
+
 int is_invalid_number(char *s)
 {
 	 int i = 0;
@@ -26,6 +29,7 @@ int is_invalid_number(char *s)
 	}	
 	return 0;
 }
+
 void	add_stack_back(t_node **a, int value)
 {
 	 t_node *new;
@@ -43,6 +47,7 @@ void	add_stack_back(t_node **a, int value)
 		curr->next = new;
 	 }
 }
+
 int has_duplicate(t_node *a, int n)
 {
 	t_node *ptr;
@@ -56,13 +61,7 @@ int has_duplicate(t_node *a, int n)
 	}
 	return 0;
 }
-void	free_split(char **arr, int j)
-{
-	int i = 0;
-	while(i < j)
-		free(arr[i++]);
-	free(arr);
-}
+
 t_node *parse_args(int ac, char **av)
 {
 	t_node *a;
@@ -79,21 +78,21 @@ t_node *parse_args(int ac, char **av)
 	{
 		numbers = ft_split(av[i], ' ');
 		if(!numbers || !numbers[0])
-			error_exit();
+			error_exit(a, numbers);
 		j = 0;
 		while(numbers[j])
 		{
 			if(is_invalid_number(numbers[j]))
-				error_exit();
+				error_exit(a, numbers);
 			n = ft_atoi(numbers[j]);
 			if(n < INT_MIN || n > INT_MAX)
-				error_exit();
+				error_exit(a, numbers);
 			if(has_duplicate(a, n))
-				error_exit();
+				error_exit(a, numbers);
 			add_stack_back(&a, n);
 			j++;		
 		}
-		free_split(numbers, j);	
+		free_split(numbers);	
 		i++;
 	}
 	return a;
