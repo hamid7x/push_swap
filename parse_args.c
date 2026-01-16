@@ -30,24 +30,6 @@ int is_invalid_number(char *s)
 	return 0;
 }
 
-void	add_stack_back(t_node **a, int value)
-{
-	 t_node *new;
-
-	 new = malloc(sizeof(t_node));
-	 new->value = value;
-	 new->next = NULL;
-	 t_node *curr = *a;
-	 if(*a == NULL)
-		*a = new;
-	 else
-         {
-	 	while(curr->next)
-			curr = curr->next;
-		curr->next = new;
-	 }
-}
-
 int has_duplicate(t_node *a, int n)
 {
 	t_node *ptr;
@@ -89,7 +71,7 @@ t_node *parse_args(int ac, char **av)
 				error_exit(a, numbers);
 			if(has_duplicate(a, n))
 				error_exit(a, numbers);
-			add_stack_back(&a, n);
+			add_stack_front(&a, n);
 			j++;		
 		}
 		free_split(numbers);	

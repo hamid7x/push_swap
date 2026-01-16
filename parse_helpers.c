@@ -1,5 +1,15 @@
 #include "push_swap.h"
 
+void    add_stack_front(t_node **stack, int value)
+{
+         t_node *new;
+
+         new = malloc(sizeof(t_node));
+         new->value = value;
+         new->next = *stack;
+         *stack = new;
+}
+
 void	free_split(char **arr)
 {
 	if(!arr)
