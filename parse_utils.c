@@ -109,10 +109,10 @@ long long	ft_atoi(const char *str)
 	}
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
-		if (sign == 1 && result > (long long ) INT_MAX)
+		if (sign == 1 && result > (INT_MAX - (str[i] - '0'))/10)
 			return (long long)INT_MAX + 1;
-		else if (sign == -1 && -result < (long long)INT_MIN)
-			return (long long)INT_MIN + 1;
+		if (sign == -1 && result > (-(long long)INT_MIN - (str[i] - '0'))/10)
+			return (long long)INT_MIN - 1;
 		result = result * 10 + (str[i++] - '0');
 	}
 	return (result * sign);
