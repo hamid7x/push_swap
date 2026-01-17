@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Werror -Wextra -Wall
 NAME = push_swap
 SRCS = push_swap.c push_swap_helper.c parse_args.c parse_utils.c \
-      parse_helpers.c swap_op.c push_op.c retate_op.c retate_reverse_op.c
+      parse_helpers.c swap_op.c push_op.c rotate_op.c retate_reverse_op.c
 OBJS = $(SRCS: .O=.C)
 
 all: $(NAME)
