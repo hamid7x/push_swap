@@ -71,7 +71,8 @@ t_node *parse_args(int ac, char **av)
 				error_exit(a, numbers);
 			if(has_duplicate(a, n))
 				error_exit(a, numbers);
-			add_stack_front(&a, n);
+			if(!add_stack_front(&a, n))
+				error_exit(a, numbers);
 			j++;		
 		}
 		free_split(numbers);	

@@ -1,21 +1,26 @@
 #include "push_swap.h"
 
-void    add_stack_front(t_node **stack, int value)
+int    add_stack_front(t_node **stack, int value)
 {
          t_node *new;
 
          new = malloc(sizeof(t_node));
-         new->value = value;
+         if (!new)
+		 return (0);
+	 new->value = value;
          new->next = *stack;
          *stack = new;
+	 return (1);
 }
 
 void	free_split(char **arr)
 {
+	int	i;
+
 	if(!arr)
 		return ;
-	int i = 0;
-	while(arr[i])
+	i = 0;
+	while (arr[i])
 	{
 		free(arr[i]);
 		i++;
@@ -27,9 +32,9 @@ void	free_stack(t_node *a)
 {
 	t_node *tmp;
 
-	if(!a)
+	if (!a)
 		return ;
-	while(a)
+	while (a)
 	{
 		tmp = a;
 		a = a->next;

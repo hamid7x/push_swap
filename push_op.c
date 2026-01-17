@@ -2,12 +2,16 @@
 
 void	pa(t_node **a, t_node **b)
 {
-	t_node	*new;
 	t_node	*tmp;
 
 	if(!*b)
 		return ;
-	add_stack_front(a, (*b)->value);
+	if(!add_stack_front(a, (*b)->value))
+	{
+		free_stack(a);
+		free_stack(b);
+		exit(1);
+	}
 	tmp = *b;
 	*b = (*b)->next;
 	 free(tmp);
@@ -16,12 +20,16 @@ void	pa(t_node **a, t_node **b)
 
 void	pb(t_node **a, t_node **b)
 {
-	t_node	*new;
 	t_node	*tmp;
 
 	if(!*a)
 		return ;
-	add_stack_front(b, (*a)->value);
+	if(!add_stack_front(b, (*a)->value))
+	{
+		free_stack(a);
+		free_stack(b);
+		exit(1);
+	}
 
 	tmp = *a;
 	*a = (*a)->next;
