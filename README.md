@@ -1,13 +1,14 @@
-# push_swap
+# Push_Swap
 
-## Project Progress
+### Progress Checklist
 
-✔ parsing
-✔ validation
-✔ swap operations (sa / sb / ss)
-✔ push operations (pa / pb);
-➡ ra / rb   ← NEXT
-⬜ rra / rrb
-⬜ ss / rr / rrr
-⬜ small sort (3 numbers)
+- [x] Parsing arguments  
+- [x] Input validation  
+- [x] Swap operations (sa / sb / ss)  
+- [x] Push operations (pa / pb)  
+- [ ] ra / rb (rotate)  
+- [ ] rra / rrb (reverse rotate)  
+- [ ] rr / rrr (combined rotates)  
+- [ ] Sorting 3 numbers (small sort)
+
 
