@@ -1,119 +1,51 @@
 #include "push_swap.h"
 
-static int	count_words(const char *s, char c)
+void	error_exit(t_node *stack, char **arr)
 {
-	int	i;
-	int	counter;
-
-	counter = 0;
-	i = 0;
-	while (s[i])
-	{
-		while (s[i] && s[i] == c)
-			i++;
-		if (s[i])
-		{
-			counter++;
-			while (s[i] && s[i] != c)
-				i++;
-		}
-	}
-	return (counter);
+	free_split(arr);
+	free_stack(stack);
+	write(1, "Error\n", 6);
+	exit(0);
 }
 
-static void	free_memory(char **arr, int n)
+int    add_stack_front(t_node **stack, int value)
 {
-	while (n--)
-		free(arr[n]);
+         t_node *new;
+
+         new = malloc(sizeof(t_node));
+         if (!new)
+		 return (0);
+	 new->value = value;
+         new->next = *stack;
+         *stack = new;
+	 return (1);
+}
+
+void	free_split(char **arr)
+{
+	int	i;
+
+	if(!arr)
+		return ;
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
 	free(arr);
 }
 
-static char	*get_word(const char *s, int start, int end)
+void	free_stack(t_node *a)
 {
-	char	*word;
-	int		i;
+	t_node *tmp;
 
-	word = malloc(sizeof(char) * (end - start + 1));
-	if (!word)
-		return (NULL);
-	i = 0;
-	while (start < end)
-		word[i++] = s[start++];
-	word[i] = '\0';
-	return (word);
-}
-
-static int	fill_arr(char **arr, const char *s, char c)
-{
-	int	start;
-	int	i;
-	int	arr_i;
-
-	i = 0;
-	arr_i = 0;
-	while (s[i])
+	if (!a)
+		return ;
+	while (a)
 	{
-		while (s[i] == c)
-			i++;
-		start = i;
-		while (s[i] && s[i] != c)
-			i++;
-		if (i > start)
-		{
-			arr[arr_i] = get_word(s, start, i);
-			if (!arr[arr_i])
-				return (free_memory(arr, arr_i), 0);
-			arr_i++;
-		}
+		tmp = a;
+		a = a->next;
+		free(tmp);
 	}
-	arr[arr_i] = NULL;
-	return (1);
-}
-
-char	**ft_split(const char *s, char c)
-{
-	char	**arr;
-
-	if (!s)
-		return (NULL);
-	arr = malloc(sizeof(char *) * (count_words(s, c) + 1));
-	if (!arr)
-		return (NULL);
-	if (!fill_arr(arr, s, c))
-		return (NULL);
-	return (arr);
-}
-int	is_space(char c)
-{
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
-
-long long	ft_atoi(const char *str)
-{
-	int			sign;
-	int			i;
-	long long	result;
-
-	i = 0;
-	sign = 1;
-	result = 0;
-	while (is_space(str[i]))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
-	{
-		if (sign == 1 && result > (INT_MAX - (str[i] - '0'))/10)
-			return (long long)INT_MAX + 1;
-		if (sign == -1 && result > (-(long long)INT_MIN - (str[i] - '0'))/10)
-			return (long long)INT_MIN - 1;
-		result = result * 10 + (str[i++] - '0');
-	}
-	return (result * sign);
 }

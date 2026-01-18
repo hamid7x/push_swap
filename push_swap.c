@@ -6,7 +6,6 @@ int main(int ac, char **av)
 {
 	t_node	*a;
 	t_node	*b;
-	t_node	*tmp;
 
 	if(ac == 1)
 		return 0;
@@ -16,25 +15,22 @@ int main(int ac, char **av)
 	printf("before:\n");
 	printf("stack A:\n");
 	print_stack(a);
-
+		
 	//test operation
 	printf("operations:\n");
 	pb(&a, &b);
 	pb(&a, &b);
-	sb(b);
 	pb(&a, &b);
-	sb(b);
-	pa(&a, &b);
-	sb(b);
-	pa(&a, &b);
-	pa(&a, &b);	
-	
 	printf("stack A:\n");
 	print_stack(a);
-
+	
 	printf("stack B:\n");
 	print_stack(b);
+	
+	sa(a);
 
+	printf("stack A:\n");
+        print_stack(a);
 
 
 	free_stack(a);
