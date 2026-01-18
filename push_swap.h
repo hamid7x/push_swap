@@ -17,7 +17,7 @@ char		**ft_split(const char *s, char c);
 long long	ft_atoi(const char *s);
 void		free_split(char **arr);
 void		free_stack(t_node *a);
-int		add_stack_front(t_node **stack, int value);
+int		add_stack_back(t_node **stack, int value);
 void		print_stack(t_node *stack);
 void		error_exit(t_node *stack, char **arr);
 

@@ -1,16 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap_op.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/18 12:20:45 by houkaamo          #+#    #+#             */
+/*   Updated: 2026/01/18 12:21:26 by houkaamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap(t_node *stack)
 {
 	int	tmp;
-	
-	if(!stack || !stack->next)
+
+	if (!stack || !stack->next)
 		return ;
 	tmp = stack->value;
 	stack->value = stack->next->value;
 	stack->next->value = tmp;
 }
-
 
 void	sa(t_node *a)
 {
@@ -28,5 +39,5 @@ void	ss(t_node *a, t_node *b)
 {
 	swap(a);
 	swap(b);
-	write(1, "sa\nsb\n",6);
+	write(1, "sa\nsb\n", 6);
 }
