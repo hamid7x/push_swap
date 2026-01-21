@@ -1,4 +1,28 @@
 #include "push_swap.h"
+
+void	indexing_stack(t_node *stack)
+{
+	int		count;
+	t_node	*curr;
+	t_node	*tmp;
+
+	curr = stack;
+	while(curr)
+	{
+		tmp = stack;
+		count = 0;
+		while(tmp)
+		{
+			if (curr->value > tmp->value)
+				count++;
+			tmp = tmp->next;
+		}
+		curr->index = count;
+		curr = curr->next;
+
+	}
+}
+
 int	stack_size(t_node *stack)
 {
 	t_node	*tmp;
@@ -38,7 +62,8 @@ void	print_stack(t_node *stack)
 	tmp = stack;
 	while(tmp)
 	{
-		printf("%d\n",tmp->value);
+
+		printf("%d : %d\n",tmp->index, tmp->value);
 		tmp = tmp->next;
 	}
 }
