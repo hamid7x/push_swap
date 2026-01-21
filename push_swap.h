@@ -21,6 +21,11 @@ int		add_stack_back(t_node **stack, int value);
 void		print_stack(t_node *stack);
 void		error_exit(t_node *stack, char **arr);
 
+int	stack_size(t_node *stack);
+int	is_sorted(t_node *stack);
+void	sort_small_numbers(t_node **stack_a, t_node **stack_b, int size);
+void	sort_3(t_node *stack_a);
+
 void	swap(t_node *stack);
 void	sa(t_node *a);
 void	sb(t_node *b);
