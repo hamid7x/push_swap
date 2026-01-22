@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 13:22:11 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/21 13:57:59 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/22 15:16:39 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,33 @@ void	sort_3(t_node **stack_a)
 void	sort_4_or_5(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*curr;
-
-	curr = *stack_a;
-	while(curr)
+	int	target;
+	int	i;
+	
+	target = 0;
+	while(stack_size(*stack_a) != 3)
 	{
-		//printf("index: %d\n", curr->index);
-		if (!(curr->index == 0 || curr->index == 1 || curr->index == 2))
-			pb(stack_a, stack_b);
-		//curr = curr->next;
-		printf("%d\n",curr->value);
-		curr = curr->next;
+		curr = *stack_a;
+		i = 0;
+		while (curr->index != target)
+		{
+			i++;
+			curr = curr->next;
+		}
+		while((*stack_a)->index != target)
+		{
+			if (i <= (stack_size(*stack_a) / 2))
+					ra(stack_a);
+			else
+				rra(stack_a);
+		}
+		pb(stack_a, stack_b);
+		target++;
 	}
-	print_stack(*stack_a);
+	sort_3(stack_a);
+	while (stack_size(*stack_b))
+		pa(stack_a, stack_b);
+	
 }
 
 void	sort_small_numbers(t_node **stack_a, t_node **stack_b, int size)
