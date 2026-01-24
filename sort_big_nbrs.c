@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 11:22:34 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/24 18:07:30 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:44:08 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,27 @@ int	is_found(int arr[], int size, int value)
 	}
 	return 0;
 }
-
-int	calc_cost_b(int pos, int size)
+int	min_cost(t_node *stack, int up, int down)
+{
+	if (up <= down)
+	{
+		printf("am up\n");
+		stack->direction = 1;
+		return (up);
+	}else{
+		printf("am down\n");
+		stack->direction = -1;
+		return (down);
+	}
+}
+int	calc_cost_b(int pos, int size, t_node *b)
 {
 	int	cost_up;
 	int	cost_down;
 
 	cost_up = pos;
 	cost_down = size - pos;
-	if (cost_up <= cost_down)
-		return (cost_up);
-	else
-		return (cost_down);
+	return (min_cost(b, cost_up, cost_down));
 }
 
 int	min_element(int list[], int len)
@@ -133,10 +142,7 @@ int	calc_cost_a(t_node *a, int value, int size)
 	}
 	cost_up = pos;
 	cost_down = size - pos;
-	if (cost_up <= cost_down)
-		return (cost_up);
-	else
-		return (cost_down);
+	return (min_cost(a, cost_up, cost_down));
 }
 
 void	push_back_to_a_sorted(t_node **a, t_node **b, int a_size)
@@ -154,10 +160,10 @@ void	push_back_to_a_sorted(t_node **a, t_node **b, int a_size)
 	pos = 0;
 	while(i < b_size)
 	{
-		cost_b = calc_cost_b(pos,b_size);
+		cost_b = calc_cost_b(pos,b_size, *b);
 		cost_a = calc_cost_a(*a,tmp_b->value, a_size);
 		tmp_b->total_cost = cost_a + cost_b;
-		printf("%d->%d\n",tmp_b->value,tmp_b->total_cost);
+		printf("%d->%d -- dir: %d\n",tmp_b->value,tmp_b->total_cost,tmp_b->direction);
 		i++;
 		pos++;
 		tmp_b = tmp_b->next;
