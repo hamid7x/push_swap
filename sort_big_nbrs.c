@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 11:22:34 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/24 16:29:12 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:07:30 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,11 +154,10 @@ void	push_back_to_a_sorted(t_node **a, t_node **b, int a_size)
 	pos = 0;
 	while(i < b_size)
 	{
-		printf("elment: %d\n",tmp_b->value);
 		cost_b = calc_cost_b(pos,b_size);
-		printf("cost_b->%d\n",cost_b);
 		cost_a = calc_cost_a(*a,tmp_b->value, a_size);
-		printf("cost_a;%d\n\n",cost_a);
+		tmp_b->total_cost = cost_a + cost_b;
+		printf("%d->%d\n",tmp_b->value,tmp_b->total_cost);
 		i++;
 		pos++;
 		tmp_b = tmp_b->next;
