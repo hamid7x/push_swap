@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int	binary_search(int lis[], int size, int target)
 {
 	int	start;
@@ -8,12 +10,13 @@ int	binary_search(int lis[], int size, int target)
 	end = size;
 	while(start < end)
 	{
-		mid = (start + end - 1) / 2;
+		mid = (start + end) / 2;
 		if (lis[mid] >= target)
-			return mid;
-		else if(
-			
+			end = mid;
+		else
+			start = mid + 1;
 	}
+	return start;
 }
 
 void	longest_increasing_subsequence(int arr[], int size)
@@ -28,18 +31,24 @@ void	longest_increasing_subsequence(int arr[], int size)
 	i = 1;
 	while(i < size)
 	{
-		if (arr[i] > lis[lis_len - 1])
+		if (arr[i] >= lis[lis_len - 1])
 		{
 			lis[lis_len] = arr[i];
 			lis_len++;
 		}
 		else
+		{
 			pos = binary_search(lis, lis_len, arr[i]);
+			lis[pos] = arr[i];
+		}
+	 	i++;
 	}
+	for(int i=0;i<lis_len;i++)
+		printf("%d ",lis[i]);
 }
 
 int main()
 {
-	int arr[]={3,1,5,2,4,6};
-	longest_increasing_subsequence(arr,6);
+	int arr[]= {10,9,2,5,3,7,101,18};
+	longest_increasing_subsequence(arr,8);
 }
