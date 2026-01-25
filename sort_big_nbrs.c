@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 11:22:34 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/25 11:07:52 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/25 13:00:10 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	min_element(int list[], int len)
 	return (min);
 }
 
-int smallest_nb_a(t_node *a)
+int get_min_nb_a(t_node *a)
 {
 	t_node	*tmp;
 	int	min;
@@ -113,7 +113,7 @@ int	find_target(t_node *a, int value, int size)
 		tmp = tmp->next;
 	}
 	if (!flag)
-		return (smallest_nb_a(a));
+		return (get_min_nb_a(a));
 	else
 		return (min_element(list, list_len));
 
@@ -157,14 +157,16 @@ int	max_cost(int cost_a, int cost_b)
 	else
 		return (cost_a);
 }
-void	push_back_to_a_sorted(t_node **a, t_node **b, int a_size)
+void	calc_cost_set_R_dir(t_node **a, t_node **b)
 {
 	t_node	*tmp_b;
 	int	i;
 	int 	pos;
 	int	b_size;
+	int	a_size;
 
 	b_size = stack_size(*b);
+	a_size = stack_size(*a);
 	i = 0;
 	tmp_b = *b;
 	pos = 0;
@@ -176,11 +178,79 @@ void	push_back_to_a_sorted(t_node **a, t_node **b, int a_size)
 			tmp_b->total_cost = max_cost(tmp_b->cost_a, tmp_b->cost_b);
 		else
 			tmp_b->total_cost = tmp_b->cost_a + tmp_b->cost_b;
-		printf("%d->%d\n",tmp_b->value,tmp_b->total_cost);
+		//printf("%d->%d\n",tmp_b->value,tmp_b->total_cost);
 		i++;
 		pos++;
 		tmp_b = tmp_b->next;
 	}
+}
+
+t_node	*get_cheap_element(t_node *b)
+{
+	t_node	*cheap;
+	t_node	*tmp;
+
+	cheap = b;
+	tmp = b->next;
+	while (tmp)
+	{
+		if (cheap->total_cost > tmp->total_cost)
+			cheap = tmp;
+		tmp = tmp->next;
+	}
+	return (cheap);
+}
+
+void	take_to_top(t_node **stack, char dir, int cost)
+{
+	while (cost)
+	{
+		if (dir == 'U')
+			rb(stack);
+		else
+			rrb(stack);
+		cost--;
+	}
+}
+
+void	push_back_to_a(t_node **a, t_node **b)
+{
+	t_node	*element;
+
+	element = get_cheap_element(*b);
+	//printf("el->%d\n",element->value);
+	take_to_top(b, element->dir_b, element->cost_b);
+	//target = find_target(*a, element->value, size);
+	take_to_top(a, element->dir_a, element->cost_a);
+	pa(a, b);
+}
+
+void	rotate_untill_sorted(t_node **a, int size)
+{
+	int	min;
+	int	i;
+	t_node	*tmp;
+
+	min = get_min_nb_a(*a);
+	tmp = *a;
+	i = 0;
+	while (tmp)
+	{
+		if (tmp->value ==  min)
+			break ;
+		tmp = tmp->next;
+		i++;
+	}
+	tmp = *a;
+	while (tmp->value != min)
+	{
+		if (i <= (size / 2))
+			ra(a);
+		else
+			rra(a);
+		tmp = *a;
+	}
+
 }
 
 void	sort_big_numbers(t_node **a, t_node **b, int size)
@@ -192,7 +262,11 @@ void	sort_big_numbers(t_node **a, t_node **b, int size)
 	int	i;
 
 	convert_to_arr(*a, arr);
-	longest_increasing_subsequence(arr,size, lis, &lis_len);
+	long_inc_subs(arr,size, lis, &lis_len);
+	printf("lis list:\n");
+	for(int i = 0; i < lis_len; i++)
+		printf("%d ",lis[i]);
+	printf("\n");
 	curr = *a;
 	i = 0;
 	while(i < size)
@@ -204,10 +278,18 @@ void	sort_big_numbers(t_node **a, t_node **b, int size)
 		curr =*a;
 		i++;
 	}
-	push_back_to_a_sorted(a,b,size);
-
-	printf("stack A:\n");
+	printf("stack A: after lis\n");
 	print_stack(*a);
-	printf("Stack B:\n");
+	printf("stack B: after lis\n");
+	print_stack(*b);
+	while (stack_size(*b) != 0)
+	{
+		calc_cost_set_R_dir(a,b);
+		push_back_to_a(a, b);
+	}
+	rotate_untill_sorted(a, size);
+	printf("stack A: after sort\n");
+	print_stack(*a);
+	printf("Stack B: after\n");
 	print_stack(*b);
 }
