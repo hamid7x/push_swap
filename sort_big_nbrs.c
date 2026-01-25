@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 11:22:34 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/25 13:00:10 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/25 18:24:30 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,15 +201,63 @@ t_node	*get_cheap_element(t_node *b)
 	return (cheap);
 }
 
-void	take_to_top(t_node **stack, char dir, int cost)
+void	take_to_top_a(t_node **a, char dir, int cost)
 {
 	while (cost)
 	{
 		if (dir == 'U')
-			rb(stack);
+			ra(a);
 		else
-			rrb(stack);
+			rra(a);
 		cost--;
+	}
+}
+void	take_to_top_b(t_node **b, char dir, int cost)
+{
+	while (cost)
+	{
+		if (dir == 'U')
+			rb(b);
+		else
+			rrb(b);
+		cost--;
+	}
+}
+
+void	take_to_top(t_node **a, t_node **b, t_node *el)
+{
+	int	cost_a;
+	int	cost_b;
+
+	cost_a = el->cost_a;
+	cost_b = el->cost_b;
+	if (el->dir_a == el->dir_b)
+	{
+		while (cost_a > 0 && cost_b > 0)
+		{
+			if (el->dir_b == 'U')
+				rr(a, b);
+			else
+				rrr(a, b);
+			cost_a--;
+			cost_b--;
+		}	
+	}
+	while (cost_a)
+	{
+		if (el->dir_a == 'U')
+			ra(a);
+		else
+			rra(a);
+		cost_a--;
+	}
+	while (cost_b)
+	{
+		if (el->dir_b == 'U')
+			rb(b);
+		else
+			rrb(b);
+		cost_b--;
 	}
 }
 
@@ -218,10 +266,13 @@ void	push_back_to_a(t_node **a, t_node **b)
 	t_node	*element;
 
 	element = get_cheap_element(*b);
-	//printf("el->%d\n",element->value);
-	take_to_top(b, element->dir_b, element->cost_b);
-	//target = find_target(*a, element->value, size);
-	take_to_top(a, element->dir_a, element->cost_a);
+	 //printf("el->%d\n",element->value);
+	//take_to_top_b(b, element->dir_b, element->cost_b);
+	//int target = find_target(*a, element->value, stack_size(*a));
+	//printf("target->%d\n",target);
+	//take_to_top_a(a, element->dir_a, element->cost_a);
+	
+	take_to_top(a, b, element);
 	pa(a, b);
 }
 
@@ -263,10 +314,10 @@ void	sort_big_numbers(t_node **a, t_node **b, int size)
 
 	convert_to_arr(*a, arr);
 	long_inc_subs(arr,size, lis, &lis_len);
-	printf("lis list:\n");
-	for(int i = 0; i < lis_len; i++)
-		printf("%d ",lis[i]);
-	printf("\n");
+	//printf("lis list:\n");
+	//for(int i = 0; i < lis_len; i++)
+		//printf("%d ",lis[i]);
+	//printf("\n");
 	curr = *a;
 	i = 0;
 	while(i < size)
@@ -278,18 +329,18 @@ void	sort_big_numbers(t_node **a, t_node **b, int size)
 		curr =*a;
 		i++;
 	}
-	printf("stack A: after lis\n");
-	print_stack(*a);
-	printf("stack B: after lis\n");
-	print_stack(*b);
+	//printf("stack A: after lis\n");
+	//print_stack(*a);
+	//printf("stack B: after lis\n");
+	//print_stack(*b);
 	while (stack_size(*b) != 0)
 	{
 		calc_cost_set_R_dir(a,b);
 		push_back_to_a(a, b);
 	}
 	rotate_untill_sorted(a, size);
-	printf("stack A: after sort\n");
-	print_stack(*a);
-	printf("Stack B: after\n");
-	print_stack(*b);
+	//printf("\nstack A: after sort\n");
+	//print_stack(*a);
+	//printf("Stack B: after\n");
+	//print_stack(*b);
 }
