@@ -10,6 +10,11 @@ typedef struct s_node
 {
 	int	value;
 	int	index;
+	int	cost_a;
+	int	cost_b;
+	int	total_cost;
+	char	dir_b;
+	char	dir_a;
 	struct s_node *next;
 } t_node;
 
@@ -27,6 +32,8 @@ int	stack_size(t_node *stack);
 int	is_sorted(t_node *stack);
 void	sort_small_numbers(t_node **stack_a, t_node **stack_b, int size);
 void	sort_3(t_node **stack_a);
+void	sort_big_numbers(t_node **a, t_node **b, int size);
+void	longest_increasing_subsequence(int arr[], int size, int lis[], int *lis_len);
 
 void	swap(t_node *stack);
 void	sa(t_node *a);

@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 11:22:34 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/24 18:44:08 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/25 11:07:52 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,24 @@ int	is_found(int arr[], int size, int value)
 	}
 	return 0;
 }
-int	min_cost(t_node *stack, int up, int down)
-{
-	if (up <= down)
-	{
-		printf("am up\n");
-		stack->direction = 1;
-		return (up);
-	}else{
-		printf("am down\n");
-		stack->direction = -1;
-		return (down);
-	}
-}
-int	calc_cost_b(int pos, int size, t_node *b)
+
+void	calc_cost_b(t_node *curr, int pos, int size)
 {
 	int	cost_up;
 	int	cost_down;
 
 	cost_up = pos;
 	cost_down = size - pos;
-	return (min_cost(b, cost_up, cost_down));
+	if (cost_up <= cost_down)
+	{
+		curr->dir_b = 'U';
+		curr->cost_b = cost_up;
+	}
+	else
+	{
+		curr->dir_b = 'D';
+		curr->cost_b = cost_down;
+	}
 }
 
 int	min_element(int list[], int len)
@@ -122,7 +119,7 @@ int	find_target(t_node *a, int value, int size)
 
 }
 
-int	calc_cost_a(t_node *a, int value, int size)
+void	calc_cost_a(t_node *a, int value, int size, t_node *curr_b)
 {
 	int	target;
 	int	pos;
@@ -142,17 +139,30 @@ int	calc_cost_a(t_node *a, int value, int size)
 	}
 	cost_up = pos;
 	cost_down = size - pos;
-	return (min_cost(a, cost_up, cost_down));
+	if (cost_up <= cost_down)
+	{
+		curr_b->dir_a = 'U';
+		curr_b->cost_a = cost_up;
+	}
+	else
+	{
+		curr_b->dir_a = 'D';
+		curr_b->cost_a = cost_down;
+	}
 }
-
+int	max_cost(int cost_a, int cost_b)
+{
+	if (cost_a <= cost_b)
+		return (cost_b);
+	else
+		return (cost_a);
+}
 void	push_back_to_a_sorted(t_node **a, t_node **b, int a_size)
 {
+	t_node	*tmp_b;
 	int	i;
 	int 	pos;
 	int	b_size;
-	t_node *tmp_b;
-	int	cost_b;
-	int	cost_a;
 
 	b_size = stack_size(*b);
 	i = 0;
@@ -160,10 +170,13 @@ void	push_back_to_a_sorted(t_node **a, t_node **b, int a_size)
 	pos = 0;
 	while(i < b_size)
 	{
-		cost_b = calc_cost_b(pos,b_size, *b);
-		cost_a = calc_cost_a(*a,tmp_b->value, a_size);
-		tmp_b->total_cost = cost_a + cost_b;
-		printf("%d->%d -- dir: %d\n",tmp_b->value,tmp_b->total_cost,tmp_b->direction);
+		calc_cost_b(tmp_b, pos, b_size);
+		calc_cost_a(*a, tmp_b->value, a_size, tmp_b);
+		if (tmp_b->dir_a == tmp_b->dir_b)
+			tmp_b->total_cost = max_cost(tmp_b->cost_a, tmp_b->cost_b);
+		else
+			tmp_b->total_cost = tmp_b->cost_a + tmp_b->cost_b;
+		printf("%d->%d\n",tmp_b->value,tmp_b->total_cost);
 		i++;
 		pos++;
 		tmp_b = tmp_b->next;
