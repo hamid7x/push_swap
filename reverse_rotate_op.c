@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 12:24:34 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/18 12:25:33 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/25 15:32:25 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ void	rrb(t_node **b)
 
 void	rrr(t_node **a, t_node **b)
 {
-	if (r_rotate(a) == 0 && r_rotate(b) == 0)
-		return ;
-	write(1, "rrr\n", 4);
+	int	a_rotated;
+	int	b_rotated;
+
+	a_rotated = r_rotate(a);
+	b_rotated = r_rotate(b);
+	if (a_rotated || b_rotated)
+		write(1, "rrr\n", 4);
 }
