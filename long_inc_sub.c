@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   long_inc_sub.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/26 19:39:08 by houkaamo          #+#    #+#             */
+/*   Updated: 2026/01/26 19:40:22 by houkaamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 
 int	binary_search(int tails[], int value, int size)
@@ -67,7 +79,7 @@ void	lis_handle(int arr[], int size, int lis[], int *lis_len)
 	lis_init(tails_indx, parent, lis_len);
 	tails[0] = arr[0];
 	i = 1;
-	while(i < size)
+	while (i < size)
 	{
 		pos = binary_search(tails, arr[i], *lis_len);
 		tails[pos] = arr[i];
