@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 09:37:25 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/18 12:19:40 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:36:28 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	error_exit(t_node *stack, char **arr)
 {
 	free_split(arr);
 	free_stack(stack);
-	write(1, "Error\n", 6);
-	exit(0);
+	write(2, "Error\n", 6);
+	exit(1);
 }
 
 int	add_stack_back(t_node **stack, int value)
