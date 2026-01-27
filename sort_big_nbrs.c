@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 11:22:34 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/25 18:24:30 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/27 18:19:37 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,6 @@ void	calc_cost_set_R_dir(t_node **a, t_node **b)
 			tmp_b->total_cost = max_cost(tmp_b->cost_a, tmp_b->cost_b);
 		else
 			tmp_b->total_cost = tmp_b->cost_a + tmp_b->cost_b;
-		//printf("%d->%d\n",tmp_b->value,tmp_b->total_cost);
 		i++;
 		pos++;
 		tmp_b = tmp_b->next;
@@ -265,13 +264,7 @@ void	push_back_to_a(t_node **a, t_node **b)
 {
 	t_node	*element;
 
-	element = get_cheap_element(*b);
-	 //printf("el->%d\n",element->value);
-	//take_to_top_b(b, element->dir_b, element->cost_b);
-	//int target = find_target(*a, element->value, stack_size(*a));
-	//printf("target->%d\n",target);
-	//take_to_top_a(a, element->dir_a, element->cost_a);
-	
+	element = get_cheap_element(*b);	
 	take_to_top(a, b, element);
 	pa(a, b);
 }
@@ -304,43 +297,57 @@ void	rotate_untill_sorted(t_node **a, int size)
 
 }
 
-void	sort_big_numbers(t_node **a, t_node **b, int size)
+void	push_non_lis(t_node **a, t_node **b, int *lis, int lis_len)
 {
-	t_node	*curr;
-	int	arr[size];
-	int	lis[size];
-	int	lis_len;
-	int	i;
+	int		size;
+	int		i;
 
-	convert_to_arr(*a, arr);
-	long_inc_subs(arr,size, lis, &lis_len);
-	//printf("lis list:\n");
-	//for(int i = 0; i < lis_len; i++)
-		//printf("%d ",lis[i]);
-	//printf("\n");
-	curr = *a;
+	size = stack_size(*a);
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
-		if (is_found(lis, lis_len, curr->value))
+		if (is_found(lis, lis_len, (*a)->value))
 			ra(a);
 		else
-			pb(a,b);
-		curr =*a;
+			pb(a, b);
 		i++;
 	}
-	//printf("stack A: after lis\n");
-	//print_stack(*a);
-	//printf("stack B: after lis\n");
-	//print_stack(*b);
-	while (stack_size(*b) != 0)
+}
+
+void	push_back_all_a(t_node **a, t_node **b)
+{
+	while (*b)
 	{
-		calc_cost_set_R_dir(a,b);
+		calc_cost_set_R_dir(a, b);
 		push_back_to_a(a, b);
 	}
+}
+
+void	sort_big_numbers(t_node **a, t_node **b, int size)
+{
+	int	*arr;
+	int	*lis;
+	int	lis_len;
+
+	arr = malloc(size * sizeof(int));
+	if(!arr)
+		error_exit(*a, NULL);
+	lis = malloc(size * sizeof(int));
+	if(!lis)
+	{
+		free(arr);
+		error_exit(*a, NULL);
+	}
+	convert_to_arr(*a, arr);
+	if (!long_inc_sub(arr,size, lis, &lis_len))
+	{
+		free(arr);
+		free(lis);
+		error_exit(*a, NULL);
+	}
+	push_non_lis(a, b, lis, lis_len);
+	push_back_all_a(a, b);
 	rotate_untill_sorted(a, size);
-	//printf("\nstack A: after sort\n");
-	//print_stack(*a);
-	//printf("Stack B: after\n");
-	//print_stack(*b);
+	free(arr);
+	free(lis);
 }
