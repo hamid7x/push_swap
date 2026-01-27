@@ -6,13 +6,13 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 19:39:08 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/27 14:40:40 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:32:05 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	binary_search(int tails[], int value, int size)
+static int	binary_search(int tails[], int value, int size)
 {
 	int	start;
 	int	end;
@@ -31,22 +31,7 @@ int	binary_search(int tails[], int value, int size)
 	return (start);
 }
 
-void	reverse_lis(int lis[], int len)
-{
-	int	i;
-	int	tmp;
-
-	i = 0;
-	while (i < len / 2)
-	{
-		tmp = lis[i];
-		lis[i] = lis[len - i - 1];
-		lis[len - i - 1] = tmp;
-		i++;
-	}
-}
-
-void	build_lis(int arr[], int lis[], int parent[], int last_index)
+static void	build_lis(int arr[], int lis[], int parent[], int last_index)
 {
 	int	i;
 
@@ -60,43 +45,21 @@ void	build_lis(int arr[], int lis[], int parent[], int last_index)
 	reverse_lis(lis, i);
 }
 
-void free_arrays(int *tails, int *tails_indx, int *parent)
-{
-	free(tails);
-	free(tails_indx);
-	free(parent);
-}
-
-int	*ft_malloc_array(int size)
-{
-	int	*arr;
-
-	arr = malloc(size * sizeof(int));
-	return (arr);
-}
-
-int	alloc_and_init_arrays(t_lis *data)
+static int	alloc_and_init_arrays(t_lis *data)
 {
 	data->tails = ft_malloc_array(data->size);
 	data->tails_indx = ft_malloc_array(data->size);
 	data->parent = ft_malloc_array(data->size);
 	if (!data->tails || !data->tails_indx || !data->parent)
 	{	
-		free_arrays(data->tails, data->tails_indx, data->parent);
+		free_arrays(data);
 		return (0);
-	}
+	}	
 	data->tails[0] = data->arr[0];
 	data->tails_indx[0] = 0;
 	data->parent[0] = -1;
 	*data->lis_len = 1;
 	return (1);
-}
-void	init_arrays(t_lis *data)
-{
-	data->tails[0] = data->arr[0];
-	data->tails_indx[0] = 0;
-	data->parent[0] = -1;
-	*data->lis_len = 1;
 }
 
 static void	lis_handler(t_lis *data)
@@ -105,7 +68,7 @@ static void	lis_handler(t_lis *data)
 	int	i;
 
 	i = 1;
-	while(i < data->size)
+	while (i < data->size)
 	{
 		pos = binary_search(data->tails, data->arr[i], *data->lis_len);
 		data->tails[pos] = data->arr[i];
@@ -123,7 +86,7 @@ static void	lis_handler(t_lis *data)
 int	long_inc_sub(int arr[], int size, int lis[], int *lis_len)
 {
 	t_lis	data;
-	int	last_index;
+	int		last_index;
 
 	data.arr = arr;
 	data.size = size;
@@ -133,6 +96,6 @@ int	long_inc_sub(int arr[], int size, int lis[], int *lis_len)
 	lis_handler(&data);
 	last_index = data.tails_indx[*lis_len - 1];
 	build_lis(data.arr, lis, data.parent, last_index);
-	free_arrays(data.tails, data.tails_indx, data.parent);
+	free_arrays(&data);
 	return (1);
 }
