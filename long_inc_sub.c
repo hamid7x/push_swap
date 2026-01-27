@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 19:39:08 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/27 14:20:19 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/27 14:40:40 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,21 @@ int	*ft_malloc_array(int size)
 	return (arr);
 }
 
-int	*allocate_arrays(int size, int **tails_indx, int **parent)
+int	alloc_and_init_arrays(t_lis *data)
 {
-	int	*tails;
-
-	tails = ft_malloc_array(size);
-	*tails_indx = ft_malloc_array(size);
-	*parent = ft_malloc_array(size);
-	if (!tails || !*tails_indx || !*parent)
+	data->tails = ft_malloc_array(data->size);
+	data->tails_indx = ft_malloc_array(data->size);
+	data->parent = ft_malloc_array(data->size);
+	if (!data->tails || !data->tails_indx || !data->parent)
 	{	
-		free_arrays(tails, *tails_indx, *parent);
+		free_arrays(data->tails, data->tails_indx, data->parent);
 		return (0);
 	}
-	return (tails);
+	data->tails[0] = data->arr[0];
+	data->tails_indx[0] = 0;
+	data->parent[0] = -1;
+	*data->lis_len = 1;
+	return (1);
 }
 void	init_arrays(t_lis *data)
 {
@@ -118,7 +120,7 @@ static void	lis_handler(t_lis *data)
 	}
 }
 
-void	long_inc_sub(int arr[], int size, int lis[], int *lis_len)
+int	long_inc_sub(int arr[], int size, int lis[], int *lis_len)
 {
 	t_lis	data;
 	int	last_index;
@@ -126,13 +128,11 @@ void	long_inc_sub(int arr[], int size, int lis[], int *lis_len)
 	data.arr = arr;
 	data.size = size;
 	data.lis_len = lis_len;
-	data.tails = allocate_arrays(data.size, &data.tails_indx, &data.parent);
-	if (!data.tails)
-		return ;
-	init_arrays(&data);
-	//data.tails[0] = data.arr[0];
+	if (!alloc_and_init_arrays(&data))
+		return (0);
 	lis_handler(&data);
 	last_index = data.tails_indx[*lis_len - 1];
 	build_lis(data.arr, lis, data.parent, last_index);
 	free_arrays(data.tails, data.tails_indx, data.parent);
+	return (1);
 }
