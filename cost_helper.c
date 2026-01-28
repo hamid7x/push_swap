@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 08:23:13 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/28 09:41:11 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/28 12:15:35 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,6 @@ void	calc_cost_b(t_node *curr, int pos, int size)
 		curr->dir_b = 'D';
 		curr->cost_b = cost_down;
 	}
-}
-
-int	get_pos_of_target(t_node *a, int target)
-{
-	int	pos;
-
-	pos = 0;
-	while (a)
-	{
-		if (a->value == target)
-			break ;
-		pos++;
-		a = a->next;
-	}
-	return (pos);
 }
 
 void	calc_cost_a(t_node *a, int value, int size, t_node *curr_b)

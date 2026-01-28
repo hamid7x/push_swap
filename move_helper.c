@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 10:13:53 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/28 11:26:02 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/28 12:15:53 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	move_to_top(t_node **a, t_node **b, t_node *el)
 			rrb(b);
 		el->cost_b--;
 	}
-
 }
 
 void	push_cheapest_to_a(t_node **a, t_node **b)

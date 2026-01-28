@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 08:57:04 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/28 09:39:17 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/28 12:16:08 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ int	get_min_nb_a(t_node *a)
 		a = a->next;
 	}
 	return (min);
+}
+
+int	get_pos_of_target(t_node *a, int target)
+{
+	int	pos;
+
+	pos = 0;
+	while (a)
+	{
+		if (a->value == target)
+			break ;
+		pos++;
+		a = a->next;
+	}
+	return (pos);
 }
 
 int	find_target(t_node *a, int value)
