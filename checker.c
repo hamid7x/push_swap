@@ -16,23 +16,33 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void	call_operation(char *line)
+void	call_operation(char *line, t_node **a, t_node **b)
 {
-	if (ft_strcmp(line, "pb") == 0)
-		printf("u call pb\n");
+	if (ft_strcmp(line, "sa") == 0)
+		sa(*a);
+	else if (ft_strcmp(line, "sb") == 0)
+		sb(*b);
+	else if (ft_strcmp(line, "ss") == 0)
+		ss(*a, *b);
+	else if (ft_strcmp(line, "pb") == 0)
+		pb(a, b);
 	else if (ft_strcmp(line, "pa") == 0)
-		printf("u call pa\n");
+		pa(a, b);
 	else if (ft_strcmp(line, "ra") == 0)
-		printf("u call ra\n");
+		ra(a);
 	else if (ft_strcmp(line, "rb") == 0)
-		printf("u call rb\n");
+		rb(b);
+	else if (ft_strcmp(line, "rr") == 0)
+		rr(a, b);
 	else if (ft_strcmp(line, "rra") == 0)
-		printf("u call rra\n");
+		rra(a);
 	else if (ft_strcmp(line, "rrb") == 0)
-		printf("u call rrb\n");
+		rrb(b);
+	else if (ft_strcmp(line, "rrr") == 0)
+		rrr(a, b);
 }
 
-void	checker()
+void	checker(t_node **a, t_node **b)
 {
 	char	*buffer;
 	int	size;
@@ -54,7 +64,16 @@ void	checker()
 			i++;
 		}
 		line[i] = '\0';
-		call_operation(line);
+		call_operation(line, a, b);
 		size = read(0, buffer, 5);
 	}
+	printf("Stack A:\n");
+	print_stack(*a);
+	printf("Stack B:\n");
+	print_stack(*b);
+	
+	if (is_sorted(*a) && !*b)
+		printf("OK\n");
+	else
+		printf("KO\n");
 }
