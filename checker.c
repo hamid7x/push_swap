@@ -40,32 +40,37 @@ void	call_operation(char *line, t_node **a, t_node **b)
 		rrb(b);
 	else if (ft_strcmp(line, "rrr") == 0)
 		rrr(a, b);
+	else
+		error_exit(*a, NULL);
 }
 
 void	checker(t_node **a, t_node **b)
 {
 	char	*buffer;
 	int	size;
-
-	buffer = malloc(sizeof(char) * 5);
+	char	*stash;
+	char	*line;
+	
+	line = NULL;
+	buffer = malloc(sizeof(char) * 2);
 	if (!buffer)
 		return ;
-	size = read(0, buffer, 5);
-	int count = 0;
+	size = read(0, buffer, 1);
 	while (size > 0)
 	{
-		char	*line;
-		line = malloc(sizeof(char) * size);
-
-		int i = 0;
-		while (i < size - 1)
+		buffer[size] = '\0';
+		line = ft_strjoin(line, buffer);
+		if (strchr(line, '\n'))
 		{
-			line[i] = buffer[i];
-			i++;
+			int i = 0;
+			while (line[i] != '\n')
+				i++;
+			line[i] = '\0';
+			call_operation(line, a, b);
+			line = NULL;
+
 		}
-		line[i] = '\0';
-		call_operation(line, a, b);
-		size = read(0, buffer, 5);
+		size = read(0, buffer, 1);
 	}
 	printf("Stack A:\n");
 	print_stack(*a);
