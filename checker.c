@@ -18,27 +18,27 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 void	call_operation(char *line, t_node **a, t_node **b)
 {
-	if (ft_strcmp(line, "sa") == 0)
+	if (ft_strcmp(line, "sa\n") == 0)
 		sa(*a);
-	else if (ft_strcmp(line, "sb") == 0)
+	else if (ft_strcmp(line, "sb\n") == 0)
 		sb(*b);
-	else if (ft_strcmp(line, "ss") == 0)
+	else if (ft_strcmp(line, "ss\n") == 0)
 		ss(*a, *b);
-	else if (ft_strcmp(line, "pb") == 0)
+	else if (ft_strcmp(line, "pb\n") == 0)
 		pb(a, b);
-	else if (ft_strcmp(line, "pa") == 0)
+	else if (ft_strcmp(line, "pa\n") == 0)
 		pa(a, b);
-	else if (ft_strcmp(line, "ra") == 0)
+	else if (ft_strcmp(line, "ra\n") == 0)
 		ra(a);
-	else if (ft_strcmp(line, "rb") == 0)
+	else if (ft_strcmp(line, "rb\n") == 0)
 		rb(b);
-	else if (ft_strcmp(line, "rr") == 0)
+	else if (ft_strcmp(line, "rr\n") == 0)
 		rr(a, b);
-	else if (ft_strcmp(line, "rra") == 0)
+	else if (ft_strcmp(line, "rra\n") == 0)
 		rra(a);
-	else if (ft_strcmp(line, "rrb") == 0)
+	else if (ft_strcmp(line, "rrb\n") == 0)
 		rrb(b);
-	else if (ft_strcmp(line, "rrr") == 0)
+	else if (ft_strcmp(line, "rrr\n") == 0)
 		rrr(a, b);
 	else
 		error_exit(*a, NULL);
@@ -62,16 +62,13 @@ void	checker(t_node **a, t_node **b)
 		line = ft_strjoin(line, buffer);
 		if (strchr(line, '\n'))
 		{
-			int i = 0;
-			while (line[i] != '\n')
-				i++;
-			line[i] = '\0';
 			call_operation(line, a, b);
 			line = NULL;
-
 		}
 		size = read(0, buffer, 1);
 	}
+	if (line != NULL)
+		error_exit(*a, NULL);
 	printf("Stack A:\n");
 	print_stack(*a);
 	printf("Stack B:\n");
