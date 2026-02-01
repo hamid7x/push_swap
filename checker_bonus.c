@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/01 10:47:10 by houkaamo          #+#    #+#             */
+/*   Updated: 2026/02/01 10:47:14 by houkaamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap_bonus.h"
-#include <string.h>
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -54,12 +65,12 @@ static void	read_instructions(t_node **a, t_node **b)
 	buffer = malloc(sizeof(char) * 2);
 	if (!buffer)
 		error_exit(*a, NULL);
-	size = read(1, buffer, 1);
+	size = read(0, buffer, 1);
 	while (size > 0)
 	{
 		buffer[size] = '\0';
 		line = ft_strjoin(line, buffer);
-		if (strchr(line, '\n'))
+		if (ft_strchr(line, '\n'))
 		{
 			call_operation(line, a, b);
 			line = NULL;
