@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 13:26:58 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/02 19:18:36 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/02 19:37:45 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_node	*parse_args(int ac, char **av);
 char	**ft_split(const char *s, char c);
 char	*ft_strjoin(const char *s1, char *s2);
 char	*ft_strchr(const char *s, int c);
-int		ft_atoi(const char *s);
+long long		ft_atoi(const char *s);
 void	free_split(char **arr);
 void	free_stack(t_node *stack);
 int		add_stack_back(t_node **stack, int value);

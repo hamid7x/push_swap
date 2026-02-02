@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 09:23:59 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/31 10:37:54 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/02 19:35:26 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static void	proccess_numbers(char **numbers, t_node **a)
 		n = ft_atoi(numbers[i]);
 		if (n < INT_MIN || n > INT_MAX)
 			error_exit(*a, numbers);
-		if (has_duplicate(*a, n))
+		if (has_duplicate(*a, (int)n))
 			error_exit(*a, numbers);
-		if (!add_stack_back(a, n))
+		if (!add_stack_back(a, (int)n))
 			error_exit(*a, numbers);
 		i++;
 	}
