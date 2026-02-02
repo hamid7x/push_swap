@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:20:27 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/22 15:17:17 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/01/28 12:28:27 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,33 @@ int main(int ac, char **av)
 {
 	t_node	*a;
 	t_node	*b;
-	int		size;
-	int	sorted;
+	int	size;
 
 	if (ac == 1)
 		return 0;
 	a = parse_args(ac,av);
 	b = NULL;
+
+	//printf("stack A: Before\n");
+	//print_stack(a);
 	size = stack_size(a);
-	//printf("size: %d\n",size);
 	if (size == 1)
 		return 0;
-	sorted = is_sorted(a);
-	//printf("is_sorted: %d\n", sorted);
-	if (sorted)
+	if (is_sorted(a))
 		return 0;
-	//printf("stack A: Before:\n");
-	//print_stack(a);
 	if (size == 2)
 		sa(a);
-	indexing_stack(a);
-	if (size > 2 && size <=	5)
-		sort_small_numbers(&a, &b, size);
-	//printf("stack A: After:\n");
-	//print_stack(a);
+	else if (size > 2 && size <=	5)
+	{
+		index_stack_element(a);
+		sort_small_stack(&a, &b, size);
+	}
+	else
+		sort_large_stack(&a, &b, size);
 
+	//printf("stack A: After sorted:\n");
+	//print_stack(a);
 	free_stack(a);
 	free_stack(b);
-
+	return (0);
 }
