@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 14:34:26 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/31 14:36:03 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/02 18:56:59 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ void	push_to_stack(t_node **stack, t_node **dest)
 
 void	pa(t_node **a, t_node **b)
 {
+	if (!b || !*b)
+		return ;
 	push_to_stack(b, a);
 }
 
 void	pb(t_node **a, t_node **b)
 {
+	if (!a || !*a)
+		return ;
 	push_to_stack(a, b);
 }
