@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	indexing_stack(t_node *stack)
+void	index_stack_element(t_node *stack)
 {
 	int		count;
 	t_node	*curr;
@@ -63,7 +63,7 @@ void	print_stack(t_node *stack)
 	while(tmp)
 	{
 
-		printf("%d : %d\n",tmp->index, tmp->value);
+		printf("%d\n",tmp->value);
 		tmp = tmp->next;
 	}
 }
