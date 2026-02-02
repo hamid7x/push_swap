@@ -6,28 +6,21 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 10:47:10 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/01 10:47:14 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/02 12:28:25 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+static void	free_and_exit(t_node *a, t_node *b, char *buffer, char *line)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] || s2[i])
-	{
-		if (s1[i] == s2[i])
-			i++;
-		else
-			return (s1[i] - s2[i]);
-	}
-	return (0);
+	free(buffer);
+	free(line);
+	free_stack(b);
+	error_exit(a, NULL);
 }
 
-static void	call_operation(char *line, t_node **a, t_node **b)
+static int	call_operation(char *line, t_node **a, t_node **b)
 {
 	if (ft_strcmp(line, "sa\n") == 0)
 		sa(*a);
@@ -52,33 +45,48 @@ static void	call_operation(char *line, t_node **a, t_node **b)
 	else if (ft_strcmp(line, "rrr\n") == 0)
 		rrr(a, b);
 	else
-		error_exit(*a, NULL);
+		return (0);
+	return (1);
+}
+
+static int	get_next_line(t_node **a, t_node **b, char *buffer, char **line)
+{
+	int		size;
+	char	*tmp;
+
+	size = read(0, buffer, 1);
+	while (size > 0)
+	{
+		buffer[size] = '\0';
+		tmp = *line;
+		*line = ft_strjoin(*line, buffer);
+		free(tmp);
+		if (ft_strchr(*line, '\n'))
+		{
+			if (!call_operation(*line, a, b))
+				return (-1);
+			free(*line);
+			*line = NULL;
+		}
+		size = read(0, buffer, 1);
+	}
+	return (1);
 }
 
 static void	read_instructions(t_node **a, t_node **b)
 {
 	char	*buffer;
 	char	*line;
-	int		size;
 
 	line = NULL;
 	buffer = malloc(sizeof(char) * 2);
 	if (!buffer)
-		error_exit(*a, NULL);
-	size = read(0, buffer, 1);
-	while (size > 0)
-	{
-		buffer[size] = '\0';
-		line = ft_strjoin(line, buffer);
-		if (ft_strchr(line, '\n'))
-		{
-			call_operation(line, a, b);
-			line = NULL;
-		}
-		size = read(0, buffer, 1);
-	}
+		free_and_exit(*a, *b, buffer, line);
+	if (get_next_line(a, b, buffer, &line) == -1)
+		free_and_exit(*a, *b, buffer, line);
 	if (line)
-		error_exit(*a, NULL);
+		free_and_exit(*a, *b, buffer, line);
+	free(buffer);
 }
 
 int	main(int ac, char **av)
@@ -100,4 +108,5 @@ int	main(int ac, char **av)
 		printf("OK\n");
 	else
 		printf("KO\n");
+	free_stack(a);
 }
