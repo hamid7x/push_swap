@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 12:22:56 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/31 14:49:42 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/02 18:21:58 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,37 @@ static void	push_stack_back(t_node *stack, t_node *tmp)
 	curr->next = tmp;
 }
 
-static void	rotate(t_node **stack)
+static int	rotate(t_node **stack)
 {
 	t_node	*tmp;
-
+	
+	if (!stack || !*stack || !(*stack)->next)
+		return (0);
 	tmp = *stack;
 	*stack = (*stack)->next;
 	push_stack_back(*stack, tmp);
+	return (1);
 }
 
 void	ra(t_node **a)
 {
-	rotate(a);
+	if (!rotate(a))
+		return ;
 }
 
 void	rb(t_node **b)
 {
-	rotate(b);
-}
+	if (!rotate(b))
+		return ;
+}	
 
 void	rr(t_node **a, t_node **b)
 {
-	rotate(a);
-	rotate(b);
+	int	rotated_a;
+	int	rotated_b;
+
+	rotated_a = rotate(a);
+	rotated_b = rotate(b);
+	if (!rotated_a || !rotated_b)
+		return ;
 }
