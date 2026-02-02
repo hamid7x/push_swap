@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 12:22:56 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/02 18:21:58 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/02 18:50:39 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	push_stack_back(t_node *stack, t_node *tmp)
 static int	rotate(t_node **stack)
 {
 	t_node	*tmp;
-	
+
 	if (!stack || !*stack || !(*stack)->next)
 		return (0);
 	tmp = *stack;

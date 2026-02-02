@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 13:26:58 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/02 12:29:29 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/02 19:18:36 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,17 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <limits.h>
 
 typedef struct s_node
 {
-	int		value;
-	int		index;
-	int		cost_a;
-	int		cost_b;
-	int		total_cost;
-	char	dir_a;
-	char	dir_b;
+	int				value;
+	int				index;
+	int				cost_a;
+	int				cost_b;
+	int				total_cost;
+	char			dir_a;
+	char			dir_b;
 	struct s_node	*next;
 }	t_node;
 

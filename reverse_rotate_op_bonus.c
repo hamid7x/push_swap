@@ -6,10 +6,9 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 14:38:49 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/02 18:22:20 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/02 18:50:04 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap_bonus.h"
 
@@ -17,7 +16,7 @@ static int	r_rotate(t_node **stack)
 {
 	t_node	*curr;
 	t_node	*last;
-	
+
 	if (!stack || !*stack || !(*stack)->next)
 		return (0);
 	curr = *stack;

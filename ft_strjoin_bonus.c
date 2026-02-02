@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:59:04 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/30 14:23:00 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/02 18:53:27 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,23 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-char    *ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
-        char    *dup;
-        int             len;
-        int             i;
-        int             j;
+	char	*dup;
+	int		len;
+	int		i;
+	int		j;
 
-        len = ft_strlen(s);
-        dup = malloc(sizeof(char) * (len + 1));
-        if (!dup)
-                return (NULL);
-        i = 0;
-        j = 0;
-        while (s[i])
-                dup[j++] = s[i++];
-        dup[j] = '\0';
-        return (dup);
+	len = ft_strlen(s);
+	dup = malloc(sizeof(char) * (len + 1));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s[i])
+		dup[j++] = s[i++];
+	dup[j] = '\0';
+	return (dup);
 }
 
 static char	*null_handler(char const *s1, char const *s2)
@@ -56,7 +56,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 	int		j;
 
-	//printf("s1 = %s\n s2 = %s\n",s1,s2);
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1 || !s2)
