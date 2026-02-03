@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:20:27 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/02 18:39:13 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:07:21 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int	main(int ac, char **av)
 	else
 		sort_large_stack(&a, &b, size);
 	free_stack(a);
+	free_stack(b);
 	return (0);
 }

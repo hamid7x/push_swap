@@ -6,7 +6,7 @@
 #    By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 14:02:58 by houkaamo          #+#    #+#              #
-#    Updated: 2026/01/31 14:31:53 by houkaamo         ###   ########.fr        #
+#    Updated: 2026/02/03 14:04:38 by houkaamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,9 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-bonus: $(BONUS_OBJS)
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(BONUS_OBJS)
 	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJS)
 
 $(OBJS): %.o: %.c $(HEADER)

@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 10:47:10 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/02 19:19:24 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:08:00 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,6 @@ int	main(int ac, char **av)
 	else
 		write(1, "KO\n", 3);
 	free_stack(a);
+	free_stack(b);
+	return (0);
 }
