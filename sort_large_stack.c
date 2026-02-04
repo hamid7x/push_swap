@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 12:12:50 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/28 12:12:54 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:39:42 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,17 @@ void	sort_large_stack(t_node **a, t_node **b, int size)
 	arr = malloc(size * sizeof(int));
 	if (!arr)
 		error_exit(*a, NULL);
+	/*
 	lis = malloc(size * sizeof(int));
 	if (!lis)
 	{
 		free(arr);
 		error_exit(*a, NULL);
 	}
+	*/
 	copy_stack_to_array(*a, arr);
-	if (!long_inc_sub(arr, size, lis, &lis_len))
+	lis = long_inc_sub(arr, size, &lis_len);
+	if (!lis)
 	{
 		free(arr);
 		free(lis);
