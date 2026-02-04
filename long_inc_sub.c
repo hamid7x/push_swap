@@ -5,97 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/26 19:39:08 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/27 16:32:05 by houkaamo         ###   ########.fr       */
+/*   Created: 2026/02/04 17:41:13 by houkaamo          #+#    #+#             */
+/*   Updated: 2026/02/04 18:13:09 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	binary_search(int tails[], int value, int size)
+int	*long_inc_sub(int arr[], int len, int *lis_len)
 {
-	int	start;
-	int	end;
-	int	mid;
+	int	*dp;
+	int	*parent;
+	int		max_len;
+	int		end_lis_index;
+	int		i;
+	int		j;
+	int	*lis;
 
-	start = 0;
-	end = size;
-	while (start < end)
-	{
-		mid = (start + end) / 2;
-		if (tails[mid] > value)
-			end = mid;
-		else
-			start = mid + 1;
-	}
-	return (start);
-}
-
-static void	build_lis(int arr[], int lis[], int parent[], int last_index)
-{
-	int	i;
-
+	dp = malloc(sizeof(int) * len);
+	parent = malloc(sizeof(int) * len);
+	if (!dp || !parent)
+		return (0);
 	i = 0;
-	while (last_index != -1)
+	while (i < len)
 	{
-		lis[i] = arr[last_index];
-		last_index = parent[last_index];
+		dp[i] = 1;
+		parent[i] = -1;
 		i++;
 	}
-	reverse_lis(lis, i);
-}
-
-static int	alloc_and_init_arrays(t_lis *data)
-{
-	data->tails = ft_malloc_array(data->size);
-	data->tails_indx = ft_malloc_array(data->size);
-	data->parent = ft_malloc_array(data->size);
-	if (!data->tails || !data->tails_indx || !data->parent)
-	{	
-		free_arrays(data);
-		return (0);
-	}	
-	data->tails[0] = data->arr[0];
-	data->tails_indx[0] = 0;
-	data->parent[0] = -1;
-	*data->lis_len = 1;
-	return (1);
-}
-
-static void	lis_handler(t_lis *data)
-{
-	int	pos;
-	int	i;
 
 	i = 1;
-	while (i < data->size)
+	max_len = dp[0];
+	while (i < len)
 	{
-		pos = binary_search(data->tails, data->arr[i], *data->lis_len);
-		data->tails[pos] = data->arr[i];
-		data->tails_indx[pos] = i;
-		if (pos > 0)
-			data->parent[i] = data->tails_indx[pos - 1];
-		else
-			data->parent[i] = -1;
-		if (pos == *data->lis_len)
-			(*data->lis_len)++;
+		j = 0;
+		while (j < i)
+		{
+			if (arr[i] > arr[j] && (dp[j] + 1) > dp[i])
+			{
+				dp[i] = dp[j] + 1;
+				parent[i] = j;
+				if (dp[i] > max_len)
+				{	
+					max_len = dp[i];
+					end_lis_index = i;
+				}
+			}
+			j++;
+		}
 		i++;
 	}
-}
+	lis = malloc(sizeof(int) * max_len);
 
-int	long_inc_sub(int arr[], int size, int lis[], int *lis_len)
-{
-	t_lis	data;
-	int		last_index;
-
-	data.arr = arr;
-	data.size = size;
-	data.lis_len = lis_len;
-	if (!alloc_and_init_arrays(&data))
-		return (0);
-	lis_handler(&data);
-	last_index = data.tails_indx[*lis_len - 1];
-	build_lis(data.arr, lis, data.parent, last_index);
-	free_arrays(&data);
-	return (1);
+	curr = end_lis_index;
+	i = max_len;
+	while (curr != -1)
+	{
+		lis[--i] = arr[curr];
+		curr = parent[curr];	
+	}
+	*lis_len = max_len;
+	free(dp);
+	free(parent);
+	return lis;
 }
