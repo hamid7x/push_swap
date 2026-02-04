@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 19:09:53 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/03 14:05:54 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:40:26 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ int			stack_size(t_node *stack);
 int			is_sorted(t_node *stack);
 void		sort_small_stack(t_node **stack_a, t_node **stack_b, int size);
 void		sort_large_stack(t_node **a, t_node **b, int size);
-int			long_inc_sub(int arr[], int size, int lis[], int *lis_len);
+int		*long_inc_sub(int arr[], int size, int *lis_len);
+
+int	long_sub(int arr[], int len, int *lis, int *lis_len);
 
 int			*ft_malloc_array(int size);
 void		free_arrays(t_lis *data);
