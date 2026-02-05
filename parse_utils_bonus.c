@@ -6,11 +6,11 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 09:37:25 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/01 11:35:19 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:29:00 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	error_exit(t_node *stack, char **arr)
 {
