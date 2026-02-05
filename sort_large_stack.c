@@ -6,13 +6,13 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 12:12:50 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/04 17:39:42 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/05 05:27:16 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	copy_stack_to_array(t_node *stack, int arr[])
+static void	copy_stack_to_array(t_node *stack, int arr[])
 {
 	t_node	*curr;
 	int		i;
@@ -27,7 +27,7 @@ void	copy_stack_to_array(t_node *stack, int arr[])
 	}
 }
 
-void	rotate_min_to_top(t_node **a, int size)
+static void	rotate_min_to_top(t_node **a, int size)
 {
 	int		min;
 
@@ -41,7 +41,7 @@ void	rotate_min_to_top(t_node **a, int size)
 	}
 }
 
-void	push_non_lis_to_b(t_node **a, t_node **b, int *lis, int lis_len)
+static void	push_non_lis_to_b(t_node **a, t_node **b, int *lis, int lis_len)
 {
 	int		size;
 	int		i;
@@ -58,7 +58,7 @@ void	push_non_lis_to_b(t_node **a, t_node **b, int *lis, int lis_len)
 	}
 }
 
-void	push_all_b_to_a(t_node **a, t_node **b)
+static void	push_all_b_to_a(t_node **a, t_node **b)
 {
 	while (*b)
 	{
@@ -76,20 +76,11 @@ void	sort_large_stack(t_node **a, t_node **b, int size)
 	arr = malloc(size * sizeof(int));
 	if (!arr)
 		error_exit(*a, NULL);
-	/*
-	lis = malloc(size * sizeof(int));
-	if (!lis)
-	{
-		free(arr);
-		error_exit(*a, NULL);
-	}
-	*/
 	copy_stack_to_array(*a, arr);
 	lis = long_inc_sub(arr, size, &lis_len);
 	if (!lis)
 	{
 		free(arr);
-		free(lis);
 		error_exit(*a, NULL);
 	}
 	push_non_lis_to_b(a, b, lis, lis_len);
