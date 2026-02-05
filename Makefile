@@ -6,7 +6,7 @@
 #    By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 14:02:58 by houkaamo          #+#    #+#              #
-#    Updated: 2026/02/04 17:31:50 by houkaamo         ###   ########.fr        #
+#    Updated: 2026/02/05 04:30:59 by houkaamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ BONUS_HEADER = push_swap_bonus.h
 
 SRCS = push_swap.c push_swap_helper.c parse_args.c parse_utils.c ft_split.c\
       parse_helpers.c swap_op.c push_op.c rotate_op.c reverse_rotate_op.c\
-      sort_small_stack.c sort_large_stack.c long_inc_sub.c lis_helper.c cost_helper.c\
+      sort_small_stack.c sort_large_stack.c long_inc_sub.c cost_helper.c\
       search_helper.c move_helper.c
 
 BONUS = checker_bonus.c parse_args_bonus.c parse_utils_bonus.c parse_helpers_bonus.c\
