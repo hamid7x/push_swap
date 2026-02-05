@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_helpers_bonus.c                              :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/18 10:54:06 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/02 19:36:47 by houkaamo         ###   ########.fr       */
+/*   Created: 2026/02/05 17:24:43 by houkaamo          #+#    #+#             */
+/*   Updated: 2026/02/05 17:25:45 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	is_space(char c)
-{
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
 
 long long	ft_atoi(const char *str)
 {
@@ -28,7 +21,7 @@ long long	ft_atoi(const char *str)
 	i = 0;
 	sign = 1;
 	result = 0;
-	while (is_space(str[i]))
+	while (str[i] == ' ')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{

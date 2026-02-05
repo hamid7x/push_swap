@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:41:13 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/05 05:24:25 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:26:30 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	lis_handler(int *dp, int *parent, int *arr, t_lis *info)
 	}
 }
 
-int	*build_lis(int	*arr, int *parent, t_lis info)
+static int	*build_lis(int	*arr, int *parent, t_lis info)
 {
 	int	i;
 	int	j;
@@ -64,7 +64,7 @@ int	*build_lis(int	*arr, int *parent, t_lis info)
 	return (lis);
 }
 
-void	init_arrays(int *dp, int *parent, int len)
+static void	init_arrays(int *dp, int *parent, int len)
 {
 	int	i;
 

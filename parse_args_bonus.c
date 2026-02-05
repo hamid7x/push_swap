@@ -6,11 +6,11 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 09:23:59 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/03 11:22:43 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/05 16:49:45 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 static int	is_invalid_number(char *s)
 {
