@@ -6,37 +6,25 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:41:13 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/04 18:13:09 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/05 05:24:25 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*long_inc_sub(int arr[], int len, int *lis_len)
+static void	free_arrays(int *dp, int *parent)
 {
-	int	*dp;
-	int	*parent;
-	int		max_len;
-	int		end_lis_index;
-	int		i;
-	int		j;
-	int	*lis;
+	free(dp);
+	free(parent);
+}
 
-	dp = malloc(sizeof(int) * len);
-	parent = malloc(sizeof(int) * len);
-	if (!dp || !parent)
-		return (0);
-	i = 0;
-	while (i < len)
-	{
-		dp[i] = 1;
-		parent[i] = -1;
-		i++;
-	}
+static void	lis_handler(int *dp, int *parent, int *arr, t_lis *info)
+{
+	int	i;
+	int	j;
 
 	i = 1;
-	max_len = dp[0];
-	while (i < len)
+	while (i < info->arr_len)
 	{
 		j = 0;
 		while (j < i)
@@ -45,27 +33,70 @@ int	*long_inc_sub(int arr[], int len, int *lis_len)
 			{
 				dp[i] = dp[j] + 1;
 				parent[i] = j;
-				if (dp[i] > max_len)
-				{	
-					max_len = dp[i];
-					end_lis_index = i;
+				if (dp[i] > info->max_len)
+				{
+					info->max_len = dp[i];
+					info->end_index = i;
 				}
 			}
 			j++;
 		}
 		i++;
 	}
-	lis = malloc(sizeof(int) * max_len);
+}
 
-	curr = end_lis_index;
-	i = max_len;
-	while (curr != -1)
+int	*build_lis(int	*arr, int *parent, t_lis info)
+{
+	int	i;
+	int	j;
+	int	*lis;
+
+	lis = malloc(sizeof(int) * info.max_len);
+	if (!lis)
+		return (0);
+	i = info.end_index;
+	j = info.max_len;
+	while (i != -1)
 	{
-		lis[--i] = arr[curr];
-		curr = parent[curr];	
+		lis[--j] = arr[i];
+		i = parent[i];
 	}
-	*lis_len = max_len;
-	free(dp);
-	free(parent);
-	return lis;
+	return (lis);
+}
+
+void	init_arrays(int *dp, int *parent, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		dp[i] = 1;
+		parent[i] = -1;
+		i++;
+	}
+}
+
+int	*long_inc_sub(int arr[], int len, int *lis_len)
+{
+	t_lis	info;
+	int		*dp;
+	int		*parent;
+	int		*lis;
+
+	dp = malloc(sizeof(int) * len);
+	parent = malloc(sizeof(int) * len);
+	if (!dp || !parent)
+		return (free_arrays(dp, parent), NULL);
+	init_arrays(dp, parent, len);
+	info.arr_len = len;
+	info.max_len = 1;
+	info.end_index = 0;
+	lis_handler(dp, parent, arr, &info);
+	*lis_len = info.max_len;
+	lis = build_lis(arr, parent, info);
+	if (!lis)
+		return (free_arrays(dp, parent), NULL);
+	free_arrays(dp, parent);
+	return (lis);
 }
