@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
+#include "checker_bonus.h"
 
 static void	free_and_exit(t_node *a, t_node *b, char *buffer, char *line)
 {
@@ -98,11 +98,6 @@ int	main(int ac, char **av)
 		return (1);
 	a = parse_args(ac, av);
 	b = NULL;
-	if (is_sorted(a))
-	{
-		free_stack(a);
-		return (0);
-	}
 	read_instructions(&a, &b);
 	if (is_sorted(a) && !b)
 		write(1, "OK\n", 3);

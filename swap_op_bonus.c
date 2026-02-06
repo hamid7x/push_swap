@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
+#include "checker_bonus.h"
 
 void	swap(t_node *stack)
 {
 	int	tmp;
 
+	if (!stack || !stack->next)
+		return ;
 	tmp = stack->value;
 	stack->value = stack->next->value;
 	stack->next->value = tmp;

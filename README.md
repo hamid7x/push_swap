@@ -17,52 +17,65 @@ The algorithm handles three cases:
 - **Size 2:** Simple swap  
 - **Size 3-5:** Optimized small stack sorting  
 - **Size 6+:** LIS + Turk algorithm approach  
-
 ---
+### Available Operations
+- **sa, sb, ss** → Swap top two elements
+
+- **pa, pb** → Push between stacks
+
+- **ra, rb, rr** → Rotate 
+
+- **rra, rrb, rrr** → Reverse Rotate 
 
 ## Instructions
 
 ### Compilation
 
-```bash
+```
 make
-Execution
+```
+### Execution
+```
 ./push_swap <list_of_integers>
-Example:
-
+```
+### Example:
+```
 ./push_swap 4 67 3 87 23
-Available Operations
-sa, sb, ss → Swap top two elements
+```
 
-pa, pb → Push between stacks
+## Algorithm Overview
+  ### Phase 1: LIS Extraction
+   
+   - Computes the Longest Increasing Subsequence to identify elements that stay in stack A.
 
-ra, rb, rr → Rotate up
+   - Pushes all non-LIS elements to stack B using pb.
 
-rra, rrb, rrr → Rotate down
+### Phase 2: Turk Algorithm
 
-Algorithm Overview
-Phase 1: LIS Extraction
-Computes the Longest Increasing Subsequence to identify elements that stay in stack A.
+   - For each element in stack B:
 
-Pushes all non-LIS elements to stack B using pb.
+   - Calculate cost in B: Distance to top (rotation direction: Up or Down)
 
-Phase 2: Turk Algorithm
-For each element in stack B:
+   - Find target in A: Smallest larger element (or minimum if none exists)
 
-Calculate cost in B: Distance to top (rotation direction: Up or Down)
+   - Calculate cost in A: Distance to bring target to top
 
-Find target in A: Smallest larger element (or minimum if none exists)
+   - Total cost: Sum of costs, or max if same direction (allows simultaneous rotation)
 
-Calculate cost in A: Distance to bring target to top
+   - Execute: Move cheapest element to A, repeat until B is empty
 
-Total cost: Sum of costs, or max if same direction (allows simultaneous rotation)
+### Phase 3: Final Rotation
+   - Rotate stack A until the minimum element is at top
 
-Execute: Move cheapest element to A, repeat until B is empty
+## Technical Choices
+- **LIS Strategy**: Keeps maximum sorted elements in place, reducing total moves
 
-Phase 3: Final Rotation
-Rotate stack A until the minimum element is at top
+- **Cost-based Selection**: Greedy approach selecting locally optimal moves
 
-Resources
+- **Direction Optimization**: Uses rr/rrr when both stacks rotate in the same direction
+
+- **Memory Management**: Dynamic allocation for LIS arrays with proper cleanup
+## Resources
 Longest Increasing Subsequence (GeeksforGeeks)
 
 Push_swap Turk Algorithm (Medium)
@@ -80,18 +93,3 @@ README composition: Structuring documentation and clarifying algorithm explanati
 
 All core algorithm implementation, data structure design, and operation logic was written manually.
 
-Project Structure
-├── push_swap.c         # Main entry point and sorting dispatcher
-├── lis.c               # Longest Increasing Subsequence implementation
-├── cost_helper.c       # Cost calculation and rotation direction logic
-├── search_helper.c     # Target finding and position utilities
-├── move_helper.c       # Execution of rotations and pushes
-└── push_swap.h         # Header file with structures and prototypes
-Technical Choices
-LIS Strategy: Keeps maximum sorted elements in place, reducing total moves
-
-Cost-based Selection: Greedy approach selecting locally optimal moves
-
-Direction Optimization: Uses rr/rrr when both stacks rotate in the same direction
-
-Memory Management: Dynamic allocation for LIS arrays with proper cleanup
