@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 12:22:56 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/18 12:24:23 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:07:55 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	rotate(t_node **stack)
 {
 	t_node	*tmp;
 
-	if (!*stack || !(*stack)->next)
+	if (!stack || !*stack || !(*stack)->next)
 		return (0);
 	tmp = *stack;
 	*stack = (*stack)->next;
