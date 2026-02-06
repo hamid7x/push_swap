@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
+/*   checker_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 13:26:58 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/03 14:06:25 by houkaamo         ###   ########.fr       */
+/*   Created: 2026/02/06 11:50:00 by houkaamo          #+#    #+#             */
+/*   Updated: 2026/02/06 11:50:03 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_BONUS_H
-# define PUSH_SWAP_BONUS_H
+#ifndef CHECKER_BONUS_H
+# define CHECKER_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
