@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:41:13 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/05 17:26:30 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/06 15:48:57 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	*build_lis(int	*arr, int *parent, t_lis info)
 
 	lis = malloc(sizeof(int) * info.max_len);
 	if (!lis)
-		return (0);
+		return (NULL);
 	i = info.end_index;
 	j = info.max_len;
 	while (i != -1)
@@ -87,7 +87,10 @@ int	*long_inc_sub(int arr[], int len, int *lis_len)
 	dp = malloc(sizeof(int) * len);
 	parent = malloc(sizeof(int) * len);
 	if (!dp || !parent)
-		return (free_arrays(dp, parent), NULL);
+	{
+		free_arrays(dp, parent);
+		return (NULL);
+	}
 	init_arrays(dp, parent, len);
 	info.arr_len = len;
 	info.max_len = 1;
@@ -95,8 +98,6 @@ int	*long_inc_sub(int arr[], int len, int *lis_len)
 	lis_handler(dp, parent, arr, &info);
 	*lis_len = info.max_len;
 	lis = build_lis(arr, parent, info);
-	if (!lis)
-		return (free_arrays(dp, parent), NULL);
 	free_arrays(dp, parent);
 	return (lis);
 }

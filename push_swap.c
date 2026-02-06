@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:20:27 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/06 15:15:20 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/06 15:30:56 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,27 @@ int	main(int ac, char **av)
 {
 	t_node	*a;
 	t_node	*b;
-	int		size;
 
 	if (ac == 1)
 		return (0);
 	a = parse_args(ac, av);
 	b = NULL;
-	size = stack_size(a);
-	if (size == 1)
+	if (stack_size(a) == 1)
 		return (0);
 	if (is_sorted(a))
-		return (free_stack(a), 0);
-	if (size == 2)
+	{
+		free_stack(a);
+		return (0);
+	}
+	if (stack_size(a) == 2)
 		sa(&a);
-	else if (size > 2 && size <= 5)
+	else if (stack_size(a) > 2 && stack_size(a) <= 5)
 	{
 		index_stack_element(a);
-		sort_small_stack(&a, &b, size);
+		sort_small_stack(&a, &b, stack_size(a));
 	}
 	else
-		sort_large_stack(&a, &b, size);
+		sort_large_stack(&a, &b, stack_size(a));
 	free_stack(a);
 	return (0);
 }
