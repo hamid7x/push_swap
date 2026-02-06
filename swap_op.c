@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 12:20:45 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/06 12:19:36 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:00:49 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	swap(t_node **stack)
 {
 	t_node	*first;
-	t_node *second;
+	t_node	*second;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
