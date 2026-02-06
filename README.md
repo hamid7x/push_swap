@@ -4,7 +4,7 @@
 
 ## Description
 
-`Push_swap` is a sorting algorithm project from the 42 curriculum that involves sorting data on a stack with a limited set of instructions. The goal is to sort integers using two stacks (A and B) with the **minimum number of operations possible**.
+`Push_swap` is a sorting algorithm project from the 42 curriculum that requires sorting data on a stack with a limited set of instructions. The goal is to sort integers using two stacks (A and B) with the **minimum number of operations possible**.
 
 The project implements a **hybrid sorting strategy**:
 
@@ -18,7 +18,7 @@ The algorithm handles three cases:
 - **Size 3-5:** Optimized small stack sorting  
 - **Size 6+:** LIS + Turk algorithm approach  
 ---
-### Available Operations
+### Allowed Operations
 - **sa, sb, ss** → Swap top two elements
 
 - **pa, pb** → Push between stacks
@@ -33,15 +33,36 @@ The algorithm handles three cases:
 
 ```
 make
+make bonus
 ```
-### Execution
+
+### Execution:
 ```
-./push_swap <list_of_integers>
+➜  push_swap git:(main) ✗ ./push_swap 4 67 3 87 23
 ```
-### Example:
-```
-./push_swap 4 67 3 87 23
-```
+
+## Parsing & Error Handling
+
+The program checks for:
+
+- Invalid characters (non-numeric input)
+
+- Duplicate numbers
+
+- Integer overflow / underflow
+
+- Empty arguments
+
+- Already sorted input
+
+If any error is detected:
+
+- The program prints Error to stderr
+
+- All allocated memory is freed
+
+- The program exits immediately
+
 
 ## Algorithm Overview
   ### Phase 1: LIS Extraction
@@ -67,29 +88,54 @@ make
 ### Phase 3: Final Rotation
    - Rotate stack A until the minimum element is at top
 
+## Bonus: Checker Program
+
+The bonus part includes a checker program that validates the correctness of the operations produced by push_swap.
+
+How the Checker Works
+
+- Parses the same input as push_swap
+
+- Reads instructions from standard input
+
+- Applies each operation to stacks A and B
+
+- Verifies the final state
+
+### Execution Example
+```
+./push_swap 4 67 3 87 23 | ./checker 4 67 3 87 23
+OK
+./checker 4 67 3 87 23
+pb
+pb
+rra
+KO
+```
+**Output:**
+
+OK → Stack A is sorted and stack B is empty
+
+KO → Sorting failed
+
 ## Technical Choices
-- **LIS Strategy**: Keeps maximum sorted elements in place, reducing total moves
+- **LIS algorithm**: Keeps maximum sorted elements in place, reducing total moves
 
 - **Cost-based Selection**: Greedy approach selecting locally optimal moves
 
 - **Direction Optimization**: Uses rr/rrr when both stacks rotate in the same direction
 
-- **Memory Management**: Dynamic allocation for LIS arrays with proper cleanup
+- **Memory Management**: Dynamic allocation for arrays with proper cleanup
+
+
 ## Resources
-Longest Increasing Subsequence (GeeksforGeeks)
 
-Push_swap Turk Algorithm (Medium)
-
-42 School man pages: man 3 printf, man 3 malloc
-
-AI Usage Disclosure
-AI assistance was used for the following tasks:
-
-Concept explanation: Understanding the LIS algorithm and Turk algorithm concepts
-
-Code review: Reviewing cost calculation logic and rotation optimization
-
-README composition: Structuring documentation and clarifying algorithm explanations
-
-All core algorithm implementation, data structure design, and operation logic was written manually.
+- 42 Push Swap Subject PDF
+  - **Turk algorithm**[https://pure-forest.medium.com/push-swap-turk-algorithm-explained-in-6-steps-4c6650a458c0](https://pure-forest.medium.com/push-swap-turk-algorithm-explained-in-6-steps-4c6650a458c0)(medium)  
+  - **Longest Increasing Subsequence**[https://en.wikipedia.org/wiki/Longest_increasing_subsequence](https://en.wikipedia.org/wiki/Longest_increasing_subsequence)(wikipedia)
+  - **Longest Increasing Subsequence**[https://www.youtube.com/watch?v=MrPa5EFcDCU](https://www.youtube.com/watch?v=MrPa5EFcDCU)(tutorial)
+## Use of AI
+AI tools were used for:
+- Clarify and understand concepts ( Longest Increasing Subsequence, Turk algorithm)
+- Review algorithm logic and cost calculation strategies
 
