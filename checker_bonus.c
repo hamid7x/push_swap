@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 10:47:10 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/03 14:08:00 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:58:16 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static void	free_and_exit(t_node *a, t_node *b, char *buffer, char *line)
 static int	call_operation(char *line, t_node **a, t_node **b)
 {
 	if (ft_strcmp(line, "sa\n") == 0)
-		sa(*a);
+		sa(a);
 	else if (ft_strcmp(line, "sb\n") == 0)
-		sb(*b);
+		sb(b);
 	else if (ft_strcmp(line, "ss\n") == 0)
-		ss(*a, *b);
+		ss(a, b);
 	else if (ft_strcmp(line, "pb\n") == 0)
 		pb(a, b);
 	else if (ft_strcmp(line, "pa\n") == 0)

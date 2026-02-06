@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 11:50:00 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/06 11:50:03 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:57:07 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void		print_stack(t_node *stack);
 int			is_sorted(t_node *stack);
 int			ft_strcmp(const char *s1, const char *s2);
 
-void		swap(t_node *stack);
-void		sa(t_node *a);
-void		sb(t_node *b);
-void		ss(t_node *a, t_node *b);
+void		swap(t_node **stack);
+void		sa(t_node **a);
+void		sb(t_node **b);
+void		ss(t_node **a, t_node **b);
 
 void		pa(t_node **a, t_node **b);
 void		pb(t_node **a, t_node **b);

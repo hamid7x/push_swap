@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:29:42 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/01/28 13:53:34 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:10:59 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static void	sort_3(t_node **stack_a)
 	c = (*stack_a)->next->next->value;
 	if (a > b && a > c && b > c)
 	{
-		sa(*stack_a);
+		sa(stack_a);
 		rra(stack_a);
 	}
 	else if (a < b && a < c)
 	{
-		sa(*stack_a);
+		sa(stack_a);
 		ra(stack_a);
 	}
 	else if (a > b && a > c && b < c)
@@ -38,7 +38,7 @@ static void	sort_3(t_node **stack_a)
 	else if (a < b && a > c)
 		rra(stack_a);
 	else
-		sa(*stack_a);
+		sa(stack_a);
 }
 
 static int	get_index_position(t_node *stack, int index)

@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:20:27 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/03 14:07:21 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:11:57 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int ac, char **av)
 	if (is_sorted(a))
 		return (free_stack(a), 0);
 	if (size == 2)
-		sa(a);
+		sa(&a);
 	else if (size > 2 && size <= 5)
 	{
 		index_stack_element(a);

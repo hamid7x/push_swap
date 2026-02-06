@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 19:09:53 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/06 11:50:42 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:12:24 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void		push_cheapest_to_a(t_node **a, t_node **b);
 void		move_to_top(t_node **a, t_node **b, t_node *el);
 void		rotate_both_stacks(t_node **a, t_node **b, t_node *el);
 
-void		swap(t_node *stack);
-void		sa(t_node *a);
-void		sb(t_node *b);
-void		ss(t_node *a, t_node *b);
+void		swap(t_node **stack);
+void		sa(t_node **a);
+void		sb(t_node **b);
+void		ss(t_node **a, t_node **b);
 
 void		pb(t_node **a, t_node **b);
 void		pa(t_node **a, t_node **b);
