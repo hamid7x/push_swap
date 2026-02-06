@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 19:09:53 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/05 05:29:18 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/06 11:50:42 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-
 
 typedef struct s_node
 {
