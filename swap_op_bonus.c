@@ -6,13 +6,13 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 14:33:43 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/06 12:56:27 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/07 16:27:22 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-void	swap(t_node **stack)
+static void	swap(t_node **stack)
 {
 	t_node	*first;
 	t_node	*second;

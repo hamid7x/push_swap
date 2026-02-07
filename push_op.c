@@ -6,13 +6,13 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 12:21:49 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/06 11:56:34 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/07 16:26:45 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_to_stack(t_node **stack, t_node **dest)
+static void	push_to_stack(t_node **stack, t_node **dest)
 {
 	t_node	*first;
 
