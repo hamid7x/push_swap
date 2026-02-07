@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 09:23:59 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/02 19:35:26 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/07 16:17:28 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ t_node	*parse_args(int ac, char **av)
 
 	a = NULL;
 	i = 1;
-	if (ac == 1)
-		return (NULL);
 	while (i < ac)
 	{
 		numbers = ft_split(av[i], ' ');
