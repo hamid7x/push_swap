@@ -6,17 +6,17 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 17:24:43 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/05 17:25:45 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/07 16:22:21 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long long	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int			sign;
 	int			i;
-	long long	result;
+	long	result;
 
 	i = 0;
 	sign = 1;
@@ -32,10 +32,10 @@ long long	ft_atoi(const char *str)
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
 		if (sign == 1 && result > (INT_MAX - (str[i] - '0' )) / 10)
-			return ((long long)INT_MAX + 1);
+			return ((long)INT_MAX + 1);
 		if (sign == -1
-			&& result > (-(long long)INT_MIN - (str[i] - '0' )) / 10)
-			return ((long long)INT_MIN - 1);
+			&& result > (-(long)INT_MIN - (str[i] - '0' )) / 10)
+			return ((long)INT_MIN - 1);
 		result = result * 10 + (str[i++] - '0');
 	}
 	return (result * sign);

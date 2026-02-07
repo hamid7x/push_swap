@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 19:09:53 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/06 12:12:24 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/07 16:24:19 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_lis
 
 t_node		*parse_args(int ac, char **av);
 char		**ft_split(const char *s, char c);
-long long	ft_atoi(const char *s);
+long		ft_atoi(const char *s);
 void		free_split(char **arr);
 void		free_stack(t_node *a);
 int			add_stack_back(t_node **stack, int value);
@@ -54,7 +54,6 @@ int			*long_inc_sub(int arr[], int size, int *lis_len);
 void		calc_cost_set_rotate_dir(t_node **a, t_node **b);
 void		calc_cost_a(t_node *a, int value, int size, t_node *curr_b);
 void		calc_cost_b(t_node *curr, int pos, int size);
-int			get_pos_of_target(t_node *a, int target);
 int			max_cost(int cost_up, int cost_down);
 
 int			find_target(t_node *a, int value);
@@ -67,7 +66,6 @@ void		push_cheapest_to_a(t_node **a, t_node **b);
 void		move_to_top(t_node **a, t_node **b, t_node *el);
 void		rotate_both_stacks(t_node **a, t_node **b, t_node *el);
 
-void		swap(t_node **stack);
 void		sa(t_node **a);
 void		sb(t_node **b);
 void		ss(t_node **a, t_node **b);

@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 11:50:00 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/06 12:57:07 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/07 16:24:21 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,14 @@ t_node		*parse_args(int ac, char **av);
 char		**ft_split(const char *s, char c);
 char		*ft_strjoin(const char *s1, char *s2);
 char		*ft_strchr(const char *s, int c);
-long long	ft_atoi(const char *s);
+long		ft_atoi(const char *s);
 void		free_split(char **arr);
 void		free_stack(t_node *stack);
 int			add_stack_back(t_node **stack, int value);
 void		error_exit(t_node *stack, char **arr);
-void		print_stack(t_node *stack);
 int			is_sorted(t_node *stack);
 int			ft_strcmp(const char *s1, const char *s2);
 
-void		swap(t_node **stack);
 void		sa(t_node **a);
 void		sb(t_node **b);
 void		ss(t_node **a, t_node **b);

@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 09:23:59 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/07 16:17:42 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/07 16:23:11 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	has_duplicate(t_node *a, int n)
 static void	proccess_numbers(char **numbers, t_node **a)
 {
 	int			i;
-	long long	n;
+	long	n;
 
 	i = 0;
 	while (numbers[i])
