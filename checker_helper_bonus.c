@@ -12,21 +12,6 @@
 
 #include "checker_bonus.h"
 
-int	stack_size(t_node *stack)
-{
-	t_node	*tmp;
-	int		i;
-
-	tmp = stack;
-	i = 0;
-	while (tmp)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	return (i);
-}
-
 int	is_sorted(t_node *stack)
 {
 	t_node	*curr;
