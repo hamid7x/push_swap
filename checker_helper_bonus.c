@@ -6,33 +6,11 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 10:47:48 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/02 12:27:51 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/07 16:30:45 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
-
-void	index_stack_element(t_node *stack)
-{
-	int		count;
-	t_node	*curr;
-	t_node	*tmp;
-
-	curr = stack;
-	while (curr)
-	{
-		tmp = stack;
-		count = 0;
-		while (tmp)
-		{
-			if (curr->value > tmp->value)
-				count++;
-			tmp = tmp->next;
-		}
-		curr->index = count;
-		curr = curr->next;
-	}
-}
 
 int	stack_size(t_node *stack)
 {

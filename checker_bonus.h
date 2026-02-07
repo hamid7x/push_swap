@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 11:50:00 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/07 16:24:21 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/07 16:30:14 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 typedef struct s_node
 {
 	int				value;
-	int				index;
-	int				cost_a;
-	int				cost_b;
-	int				total_cost;
-	char			dir_a;
-	char			dir_b;
 	struct s_node	*next;
 }	t_node;
 
