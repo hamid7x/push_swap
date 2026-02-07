@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 10:47:10 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/06 15:19:17 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/07 16:20:18 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int ac, char **av)
 	t_node	*b;
 
 	if (ac == 1)
-		return (1);
+		return (0);
 	a = parse_args(ac, av);
 	b = NULL;
 	read_instructions(&a, &b);
