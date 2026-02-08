@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 17:24:43 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/07 16:22:21 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/08 11:34:41 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long	ft_atoi(const char *str)
 {
-	int			sign;
-	int			i;
+	int		sign;
+	int		i;
 	long	result;
 
 	i = 0;
