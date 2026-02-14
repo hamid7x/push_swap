@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 10:47:48 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/07 16:30:45 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/14 19:40:19 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	is_sorted(t_node *stack)
 {
 	t_node	*curr;
 	t_node	*next;
-
+	
+	if (!stack)
+		return (0);
 	curr = stack;
 	while (curr->next)
 	{
