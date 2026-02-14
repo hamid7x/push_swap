@@ -6,7 +6,7 @@
 /*   By: houkaamo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 11:50:00 by houkaamo          #+#    #+#             */
-/*   Updated: 2026/02/07 16:30:14 by houkaamo         ###   ########.fr       */
+/*   Updated: 2026/02/14 19:41:00 by houkaamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_node
 
 t_node		*parse_args(int ac, char **av);
 char		**ft_split(const char *s, char c);
-char		*ft_strjoin(const char *s1, char *s2);
+char		*ft_strjoin(const char *s1, const char *s2);
 long		ft_atoi(const char *s);
 void		free_split(char **arr);
 void		free_stack(t_node *stack);
